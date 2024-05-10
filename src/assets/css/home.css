@@ -1,0 +1,80 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+img.splash-image {
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+div.splash-content {
+    min-height: calc(100vh - 56px);
+    width: 100%;
+    display: grid;
+    background-color: #00000055;
+    grid-template-rows: 1fr 40px;
+    z-index: -1;
+}
+
+@media (min-width: 600px) {
+    div.splash-content {
+        min-height: calc(100vh - 64px);
+    }
+}
+
+div.splash-content .splash-element {
+    display: grid;
+    place-content: center;
+}
+
+.splash-expander {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    animation: infinite ease-in-out expander-animation 2s;
+}
+
+@keyframes expander-animation {
+    from {
+        padding-top: 0;
+    }
+
+    50% {
+        padding-top: 0.5em;
+    }
+
+    to {
+        padding-top: 0;
+    }
+}
+
+.doc-list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
+}
+
+@media (max-width: 600px) {
+    .doc-list-container {
+        padding:0;
+    }
+}
+
+.doc-list-list {
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    max-width: 793px;
+}
