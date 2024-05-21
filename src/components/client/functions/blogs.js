@@ -56,7 +56,6 @@ export const fetchDocsByListFile = async (callback) => {
 };
 
 export const fetchDocsByTraversing = async (callback) => {
-    // todo: optimize by fetching background, 
     let ret = await getGitHubPathFilesRecurselyOrNot(
         Fetching.common.githubRootUrl,
         Fetching.common.accountName,
