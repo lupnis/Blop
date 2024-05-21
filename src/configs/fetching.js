@@ -19,7 +19,7 @@ export const Fetching = {
     },
     docsList: {
         branch: "master",
-        maxShownPerPage: 2,
+        maxShownPerPage: 5,
         sortTransform: ((a, b) => 0),
         useDocListFile: true,
         docListFileRelativePath: 'bloglist.json',
