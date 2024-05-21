@@ -75,7 +75,6 @@ export default function BlogListRender(props) {
                     pages.push([]);
                 }
                 pages[pages.length - 1].push(statistics.docs[i]);
-                console.log(statistics.docs[i])
             }
             total = statistics.docs.length;
         }
@@ -240,5 +239,4 @@ export default function BlogListRender(props) {
             </div>
         </>
     );
-
 }

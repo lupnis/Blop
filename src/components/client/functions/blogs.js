@@ -1,13 +1,13 @@
 "use client";
 
 import { Fetching } from "@/configs/fetching";
-import { shuffle, filterSpecificSuffix } from "@/components/client/functions/utils";
+import { filterSpecificSuffix } from "@/components/client/functions/utils";
 import { getFileContent, getGitHubPathFilesRecurselyOrNot } from "@/components/server/functions/githubFetching";
 
 import { Navigate } from "@/configs/navigate";
 import { BlogsPage } from "@/configs/pages/blogs";
 
-export const parseBlogElements = (docContent = '', requireBody = true) => {
+export const parseBlogElements = (docContent = '', requireBody = false) => {
     const listContent = docContent.split('\n');
     let listTransformed = [...listContent];
     let retContent = {}
