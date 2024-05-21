@@ -7,7 +7,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import CardContent from "@mui/material/CardContent";
 
-import PinCardItem from "@/components/client/components/PinCardItem";
+import PinCardItem from "@/components/client/components/CardItem";
 import { fetchPinAutoSelect } from "@/components/client/functions/pins";
 
 import { Navigate } from "@/configs/navigate";
@@ -19,6 +19,8 @@ export default function PinList() {
     const [pinList, setPinList] = useState([])
 
     useEffect(() => {
+        setLoading(true);
+        setPinList([]);
         fetchPinAutoSelect((doc) => {
             setPinList((prev) => { return [...prev, doc] });
         }).then(() => {
@@ -30,10 +32,8 @@ export default function PinList() {
         <>
             <h1 className="w-full text-center"> {HomePage.listArea.listTitle} </h1>
             {
-                (!loading && !pinList.length) ?
-                    HomePage.listArea.placeHolder
-                    :
-                    ''
+                (!loading && !pinList.length) &&
+                HomePage.listArea.placeHolder
             }
             {
                 pinList.map((content, id) => {
@@ -51,30 +51,28 @@ export default function PinList() {
                 })
             }
             {
-                loading ?
-                    <Grid container wrap="nowrap" sx={{ padding: "1rem 1rem 1rem 0" }}>
-                        <Grid item xs="9" sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
-                            <CardContent sx={{ flex: "1 0 auto" }}>
-                                <Typography className="h-8 text-ellipsis overflow-hidden" component="div" variant="h5">
-                                    <Skeleton />
-                                </Typography>
-                                <Typography className="h-6 text-ellipsis overflow-hidden" variant="subtitle1" color="text.secondary" component="div">
-                                    <Skeleton sx={{ width: "16rem" }} />
-                                </Typography>
-                                <Typography className="h-6 text-ellipsis overflow-hidden" variant="subtitle1" color="text.secondary" component="div">
-                                    <Skeleton sx={{ width: "8rem" }} />
-                                </Typography>
-                                <Typography className="text-ellipsis overflow-hidden" variant="body2" color="text.secondary" component="div" sx={{ height: HomePage.listArea.listItem.abstractHeight }}>
-                                    <Skeleton sx={{ height: "100%" }} />
-                                </Typography>
-                            </CardContent>
-                        </Grid>
-                        <Grid item xs="3">
-                            <Skeleton sx={{ height: "93%" }} animation="wave" variant="rectangular" />
-                        </Grid>
+                loading &&
+                <Grid container wrap="nowrap" sx={{ padding: "1rem 1rem 1rem 0" }}>
+                    <Grid item xs="9" sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+                        <CardContent sx={{ flex: "1 0 auto" }}>
+                            <Typography className="h-8 text-ellipsis overflow-hidden" component="div" variant="h5">
+                                <Skeleton />
+                            </Typography>
+                            <Typography className="h-6 text-ellipsis overflow-hidden" variant="subtitle1" color="text.secondary" component="div">
+                                <Skeleton sx={{ width: "16rem" }} />
+                            </Typography>
+                            <Typography className="h-6 text-ellipsis overflow-hidden" variant="subtitle1" color="text.secondary" component="div">
+                                <Skeleton sx={{ width: "8rem" }} />
+                            </Typography>
+                            <Typography className="text-ellipsis overflow-hidden" variant="body2" color="text.secondary" component="div" sx={{ height: HomePage.listArea.listItem.abstractHeight }}>
+                                <Skeleton sx={{ height: "100%" }} />
+                            </Typography>
+                        </CardContent>
                     </Grid>
-                    :
-                    ''
+                    <Grid item xs="3">
+                        <Skeleton sx={{ height: "93%" }} animation="wave" variant="rectangular" />
+                    </Grid>
+                </Grid>
             }
         </>);
 }

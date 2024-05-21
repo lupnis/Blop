@@ -5,6 +5,7 @@ import { shuffle, filterSpecificSuffix } from "@/components/client/functions/uti
 import { getFileContent, getGitHubPathFilesRecurselyOrNot } from "@/components/server/functions/githubFetching";
 
 import { Navigate } from "@/configs/navigate";
+import { BlogsPage } from "@/configs/pages/blogs";
 
 export const parseBlogElements = (docContent = '', requireBody = true) => {
     const listContent = docContent.split('\n');
@@ -33,7 +34,7 @@ export const parseBlogElements = (docContent = '', requireBody = true) => {
     return retContent;
 };
 
-export const fetchDocsByListFile = async () => {
+export const fetchDocsByListFile = async (callback) => {
     let ret = await getFileContent(
         Fetching.common.githubRootUrl,
         Fetching.common.accountName,
@@ -42,14 +43,19 @@ export const fetchDocsByListFile = async () => {
         Fetching.docsList.docListFileRelativePath
     );
     try {
-        let listPins = JSON.parse(ret);
-        return listPins;
+        let listDocs = JSON.parse(ret);
+        if (callback) {
+            for (let i = 0; i < listDocs.length; ++i) {
+                callback(listDocs[i]);
+            }
+        }
+        return listDocs;
     } catch (err) {
         return [];
     }
 };
 
-export const fetchDocsByTraversing = async () => { 
+export const fetchDocsByTraversing = async (callback) => {
     // todo: optimize by fetching background, 
     let ret = await getGitHubPathFilesRecurselyOrNot(
         Fetching.common.githubRootUrl,
@@ -72,6 +78,9 @@ export const fetchDocsByTraversing = async () => {
             );
             let elements = parseBlogElements(docContent, false);
             elements['link'] = `${Navigate.blogs.blogNavigateRoute}?${Navigate.blogs.blogPageParamKey}=${validFiles[i]}`;
+            if (callback) {
+                callback(elements);
+            }
             retList.push(elements);
         }
         return retList;
@@ -80,26 +89,68 @@ export const fetchDocsByTraversing = async () => {
     }
 };
 
-export const fetchPinAutoSelect = async () => {
-    if (Fetching.pinsList.usePinsListFile &&
-        Fetching.pinsList.pinListFileRelativePath
+export const fetchDocsAutoSelect = async (callback) => {
+    if (Fetching.docsList.useDocListFile &&
+        Fetching.docsList.docListFileRelativePath
     ) {
-        return await fetchPinByListFile();
+        return await fetchDocsByListFile(callback);
     } else {
-        return await fetchPinByTraversing();
+        return await fetchDocsByTraversing(callback);
     }
 };
 
-export const applyPinList = (pins = []) => {
-    try {
-        if (Fetching.pinsList.shufflePins) {
-            pins = shuffle(pins);
+export const transformDocList = (docList) => {
+    return docList.map((doc) => {
+        const title = doc.title || BlogsPage.listItem.placeHolder.title;
+        const abstract = doc.abstract || BlogsPage.listItem.placeHolder.abstract;
+        const author = doc.author || BlogsPage.listItem.placeHolder.author;
+        const date = doc.date || BlogsPage.listItem.placeHolder.date;
+        const tags = doc.tags || [];
+        return `${title} ${abstract} ${author} ${date} ${tags.join(' ')}`;
+    })
+} 
+
+export const tokenizer = (doc) => {
+    let tokens = [];
+    for (const sentence of doc.split(/\s+/)) {
+        if (/[\u4e00-\u9fa5]/.test(sentence)) {
+            tokens.push(...sentence.split(''));
+        } else {
+            tokens.push(...sentence.replace(/[^a-zA-Z0-9]/g, '').toLowerCase().split(''));
         }
-        if (pins.length > Fetching.pinsList.maxShown) {
-            pins = pins.slice(0, Fetching.pinsList.maxShown);
-        }
-        return pins;
-    } catch (err) {
-        return [];
     }
+    return tokens;
+};
+
+export const buildInvertedIndex = (docs = []) => {
+    let iIndexes = {};
+    docs.forEach((doc, docIndex) => {
+        const tokens = tokenizer(doc);
+        tokens.forEach((token, tokenIndex) => {
+            if (!iIndexes[token]) {
+                iIndexes[token] = [];
+            }
+            iIndexes[token].push({ index: docIndex, position: tokenIndex });
+        });
+    });
+    return iIndexes;
+};
+
+export const searchDocs = (keywords = '', iIndexes = {}) => {
+    let tokens = tokenizer(keywords);
+    let retrieved = {};
+    for (const token of tokens) {
+        if (iIndexes[token]) {
+            for (const entry of iIndexes[token]) {
+                const { index } = entry;
+                if (!retrieved[index]) {
+                    retrieved[index] = 0;
+                }
+                retrieved[index]++;
+            }
+        }
+    }
+    return Object.entries(retrieved)
+        .sort((a, b) => b[1] - a[1])
+        .map(([docId, score]) => ({ id: docId, score: score }));
 };
