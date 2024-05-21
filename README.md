@@ -1,5 +1,12 @@
 在学react, 做个博客试试看吧uvu
 
+|component|progress|
+|-----|-----|
+|主页|DONE|
+|博客搜索|DONE|
+|博客查看|IN PROGRESS|
+|其他功能|PENDING|
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
