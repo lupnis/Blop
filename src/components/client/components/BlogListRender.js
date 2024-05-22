@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -129,7 +131,7 @@ export default function BlogListRender(props) {
 
     return (
         <>
-            <img src="https://picsum.photos/1024/768" className="banner-image"></img>
+            <img src={BlogsPage.tabBackgroundImage} className="banner-image"></img>
             <div className="banner-content">
                 <div className="banner-element">
                     {BlogsPage.showContent && BlogsPage.content}

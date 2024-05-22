@@ -1,7 +1,12 @@
 "use client";
 
+import EditIcon from "@mui/icons-material/Edit";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
 export const BlogsPage = {
     tabTitle: "博客",
+    tabBackgroundImage: "https://picsum.photos/1024/768",
+    specificTitle: "博客详情",
     showContent: true,
     content: (
         <div style={{ textAlign: "center" }}>
@@ -10,7 +15,7 @@ export const BlogsPage = {
             </h1>
         </div>
     ),
-    searchInputPlaceHolder: '搜索博客...',
+    searchInputPlaceHolder: "搜索博客...",
     paginationSiblings: 1,
     paginationBoundary: 2,
     resultsPrefix: "共 ",
@@ -24,8 +29,18 @@ export const BlogsPage = {
             title: "<无标题>",
             author: "<无作者信息>",
             date: "<无日期信息>",
-            abstract: '<无摘要信息>',
+            abstract: "<无摘要信息>",
             thumb: "https://www.svgrepo.com/show/429915/not-found-error-alert.svg"
         }
+    },
+    docItem: {
+        prefixes: {
+            author: '',
+            authorIcon: <EditIcon sx={{ fontSize: "1rem" }} color="inherit" />,
+            date: '',
+            dateIcon: <CalendarMonthIcon sx={{ fontSize: "1rem" }} color="inherit" />,
+        },
+        loadingContent: '加载中...',
+        maxTagsShown: 5,
     }
 };

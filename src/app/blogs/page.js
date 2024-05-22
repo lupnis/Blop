@@ -25,6 +25,7 @@ export default function BlogPageRender(props) {
     return (
         <main className="max-w-full">
             <ScrollTop sticked="drawer-box" />
+            <title>{BlogsPage.specificTitle}</title>
             <BlogDocRender path={blogPath} />
         </main>
     );

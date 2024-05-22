@@ -22,13 +22,25 @@ div.banner-content {
     z-index: -1;
 }
 
+div.doc-banner-content {
+    min-height: calc(328px - 56px);
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 40px;
+    z-index: -1;
+}
+
 @media (min-width: 600px) {
     div.banner-content {
         min-height: calc(286px - 64px);
     }
+
+    div.doc-banner-content {
+        min-height: calc(328px - 64px);
+    }
 }
 
-div.banner-content .banner-element {
+.banner-element {
     display: grid;
     place-content: center;
 }
@@ -44,7 +56,7 @@ div.banner-content .banner-element {
 
 @media (max-width: 600px) {
     .doc-list-container {
-        padding:0;
+        padding: 0;
     }
 }
 
