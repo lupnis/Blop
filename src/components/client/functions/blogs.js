@@ -9,7 +9,7 @@ import { BlogsPage } from "@/configs/pages/blogs";
 
 export const parseBlogElements = (docContent = '', requireBody = false) => {
     const listContent = docContent.split('\n');
-    let listTransformed = [...listContent];
+    let listTransformed = [];
     let retContent = {}
     const totalElementsLength = Object.keys(Fetching.docFile.matchers).length;
     let elementCount = 0;
@@ -17,12 +17,18 @@ export const parseBlogElements = (docContent = '', requireBody = false) => {
         retContent[item] = null
     });
     for (let i = 0; i < listContent.length; ++i) {
+        let matched = false;
         for (const [key, value] of Object.entries(Fetching.docFile.matchers)) {
+            matched = false;
             if (retContent[key] === null && value.match(listContent[i])) {
                 let transform = value.transform || ((x) => x);
                 retContent[key] = transform(listContent[i]);
-                listTransformed.splice(i, 1);
+                matched = true;
+                break;
             }
+        }
+        if (!matched) {
+            listTransformed.push(listContent[i]);
         }
         if (elementCount >= totalElementsLength) {
             break;
@@ -107,7 +113,7 @@ export const transformDocList = (docList) => {
         const tags = doc.tags || [];
         return `${title} ${abstract} ${author} ${date} ${tags.join(' ')}`;
     })
-} 
+}
 
 export const tokenizer = (doc) => {
     let tokens = [];

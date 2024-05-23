@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-/** installed modules import  */
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useTheme, alpha } from "@mui/material/styles";
@@ -11,12 +10,10 @@ import Stack from "@mui/material/Stack";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
-/** components import */
 import { getFileContent } from "@/components/server/functions/githubFetching";
 import { parseBlogElements } from "@/components/client/functions/blogs";
 import MarkdownRenderer from "@/components/client/components/MarkdownRenderer";
 
-/** configs import */
 import { Fetching } from "@/configs/fetching";
 import { BlogsPage } from "@/configs/pages/blogs";
 
@@ -41,9 +38,7 @@ export default function BlogDocRender({ path }) {
             Fetching.pinsList.branch,
             path
         ).then((resp) => {
-            console.log(resp);
             const elements = parseBlogElements(resp, true);
-            console.log(elements);
             if (elements.tags) {
                 elements.tags = elements.tags.slice(0, BlogsPage.docItem.maxTagsShown);
             }

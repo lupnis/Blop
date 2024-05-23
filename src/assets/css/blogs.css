@@ -61,8 +61,15 @@ div.doc-banner-content {
 }
 
 .blog-list-list {
-    overflow: hidden;
     width: 100%;
     min-height: 100vh;
     max-width: 793px;
+}
+
+.blog-list-list * {
+    max-width: 100%;
+}
+
+.blog-code-area {
+    font-family: 'Consolas', 'Courier New', monospace;
 }
