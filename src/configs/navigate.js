@@ -23,7 +23,7 @@ export const Navigate = {
     },
     drawer: {
         width: 139,
-        initShowState: 1,
+        initShowState: 0,
         navigateList: [
             { icon: <HomeIcon />, text: "主页", route: "/" },
             { icon: <BookIcon />, text: "博客", route: "/blogs" },
