@@ -4,14 +4,14 @@ export const Fetching = {
     common: {
         githubRootUrl: "https://github.com",
         accountName: "lupnis",
-        repositoryName: "lupnis.github.io"
+        repositoryName: "mes_blogs"
     },
     pinsList: {
         branch: "master",
         maxShown: 5,
         shufflePins: false,
         usePinsListFile: true,
-        pinListFileRelativePath: 'bloglist.json',
+        pinListFileRelativePath: 'blogs/pins.json',
         traversingFetch: {
             relativePath: '',
             recurseDirs: false
@@ -22,7 +22,7 @@ export const Fetching = {
         maxShownPerPage: 5,
         sortTransform: ((a, b) => 0),
         useDocListFile: true,
-        docListFileRelativePath: 'bloglist.json',
+        docListFileRelativePath: 'blogs/list.json',
         traversingFetch: {
             relativePath: '',
             recurseDirs: false
@@ -64,6 +64,17 @@ export const Fetching = {
                 match: (content) => content.startsWith("> abstract:"),
                 transform: (content) => content.split("> abstract:")[1]
             }
+        }
+    },
+    linksList: {
+        branch: "master",
+        maxShownPerPage: 5,
+        sortTransform: ((a, b) => 0),
+        useLinksListFile: true,
+        linksListFile: 'links/links.json',
+        traversingFetch: {
+            relativePath: '',
+            recurseDirs: false
         }
     }
 };

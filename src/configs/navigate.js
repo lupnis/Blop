@@ -29,7 +29,7 @@ export const Navigate = {
             { icon: <BookIcon />, text: "博客", route: "/blogs" },
             // { icon: <ArchiveIcon />, text: "归档", route: "/archive" },
             // { icon: <AccessTimeIcon />, text: "事件", route: "/events" },
-            // { icon: <PetsIcon />, text: "友链", route: "/links" },
+            { icon: <PetsIcon />, text: "友链", route: "/links" },
             // { icon: <AccountCircleIcon />, text: "关于", route: "/about" },
             // { icon: <ApiIcon />, text: "服务", route: "/services" }
         ]
