@@ -14,7 +14,7 @@ export const HomePage = {
                     Hello World!
                 </h1>
                 <h2 style={{ color: "#fff" }}>
-                    This is the description of splash 🙂
+                    u3333333333333333333u
                 </h2>
             </div>
         ),
