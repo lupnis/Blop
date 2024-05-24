@@ -9,12 +9,12 @@ import { Theming } from "@/configs/theming";
 
 import "@/assets/css/global.css";
 
-export default function RootLayout ({ children }) {
+export default function RootLayout({ children }) {
     const [themeItem, setThemeItem] = useState(Theming.themes[Theming.defaultThemeIndex]);
     return (
         <html>
             <head>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="viewport" content="width=device-width" initial-scale="1.00" maximum-scale="1.0" />
             </head>
             <body>
                 <ThemeProvider theme={themeItem}>
