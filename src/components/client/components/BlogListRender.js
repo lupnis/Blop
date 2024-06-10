@@ -46,7 +46,7 @@ export default function BlogListRender(props) {
     const [searchContent, setSearchContent] = useState('');
 
     const handleSearchBoxKeyDown = (e) => {
-        handleSearchAction();
+        if (e.key === "Enter") { handleSearchAction(); }
     };
 
     const handleSearchAction = (e) => {
