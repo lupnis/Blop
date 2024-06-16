@@ -76,5 +76,33 @@ export const Fetching = {
             relativePath: '',
             recurseDirs: false
         }
+    },
+    linkFile: {
+        matchers: {
+            title: {
+                match: (content) => content.startsWith("# title:"),
+                transform: (content) => content.split("# title:")[1]
+            },
+            owner: {
+                match: (content) => content.startsWith("> owner:"),
+                transform: (content) => content.split("> owner:")[1]
+            },
+            link: {
+                match: (content) => content.startsWith("> link:"),
+                transform: (content) => content.split("> link:")[1]
+            },
+            date: {
+                match: (content) => content.startsWith("> date:"),
+                transform: (content) => content.split("> date:")[1]
+            },
+            banner: {
+                match: (content) => content.startsWith("> banner:"),
+                transform: (content) => content.split("> banner:")[1]
+            },
+            avatar: {
+                match: (content) => content.startsWith("> avatar:"),
+                transform: (content) => content.split("> avatar:")[1]
+            }
+        }
     }
 };
