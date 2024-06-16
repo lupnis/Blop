@@ -21,5 +21,5 @@ export const Theming = {
             }
         })
     ],
-    defaultThemeIndex: 0
+    defaultThemeIndex: 1
 };
