@@ -20,7 +20,7 @@ export default function LinksPageRender(props) {
     return (
         <>
             <title>{LinksPage.title}</title>
-            {[1,2,3].map((item, i)=>{return <LinkItem key={i} />})}
+            <LinkItem />
         </>
     );
 }
