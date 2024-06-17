@@ -184,15 +184,17 @@ export default function LinksPageRender(props) {
                             {
                                 (statistics.pages.length > 0) && (statistics.pages[statistics.currentPage - 1].map((content, id) => {
                                     return (
-                                        <LinkItem
-                                            key={id}
-                                            title={content.title || LinksPage.listItem.placeHolder.title}
-                                            owner={content.owner || LinksPage.listItem.placeHolder.owner}
-                                            date={content.date || LinksPage.listItem.placeHolder.date}
-                                            descriptions={content.descriptions || LinksPage.listItem.placeHolder.descriptions}
-                                            link={content.link || Navigate.error.errorNavigateRoute}
-                                            avatar={content.avatar || LinksPage.listItem.placeHolder.avatar}
-                                        />
+                                        <Grid item xs="6" sx={{}}>
+                                            <LinkItem
+                                                key={id}
+                                                title={content.title || LinksPage.listItem.placeHolder.title}
+                                                owner={content.owner || LinksPage.listItem.placeHolder.owner}
+                                                date={content.date || LinksPage.listItem.placeHolder.date}
+                                                descriptions={content.descriptions || LinksPage.listItem.placeHolder.descriptions}
+                                                link={content.link || Navigate.error.errorNavigateRoute}
+                                                avatar={content.avatar || LinksPage.listItem.placeHolder.avatar}
+                                            />
+                                        </Grid>
                                     );
                                 }))
                             }
