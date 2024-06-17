@@ -3,22 +3,20 @@
 import { Fetching } from "@/configs/fetching";
 import { filterSpecificSuffix } from "@/components/client/functions/utils";
 import { getFileContent, getGitHubPathFilesRecurselyOrNot } from "@/components/server/functions/githubFetching";
+import { LinksPage } from "@/configs/pages/links";
 
-import { Navigate } from "@/configs/navigate";
-import { BlogsPage } from "@/configs/pages/blogs";
-
-export const parseBlogElements = (docContent = '', requireBody = false) => {
-    const listContent = docContent.split('\n');
+export const parseLinkElements = (linkContent = '') => {
+    const listContent = linkContent.split('\n');
     let listTransformed = [];
     let retContent = {}
-    const totalElementsLength = Object.keys(Fetching.docFile.matchers).length;
+    const totalElementsLength = Object.keys(Fetching.linkFile.matchers).length;
     let elementCount = 0;
-    Object.keys(Fetching.docFile.matchers).forEach((item, index) => {
+    Object.keys(Fetching.linkFile.matchers).forEach((item, index) => {
         retContent[item] = null
     });
     for (let i = 0; i < listContent.length; ++i) {
         let matched = false;
-        for (const [key, value] of Object.entries(Fetching.docFile.matchers)) {
+        for (const [key, value] of Object.entries(Fetching.linkFile.matchers)) {
             matched = false;
             if (retContent[key] === null && value.match(listContent[i])) {
                 let transform = value.transform || ((x) => x);
@@ -34,41 +32,38 @@ export const parseBlogElements = (docContent = '', requireBody = false) => {
             break;
         }
     }
-    if (requireBody) {
-        retContent["_body"] = listTransformed.join('\n');
-    }
     return retContent;
 };
 
-export const fetchDocsByListFile = async (callback) => {
+export const fetchLinksByListFile = async (callback) => {
     let ret = await getFileContent(
         Fetching.common.githubRootUrl,
         Fetching.common.accountName,
         Fetching.common.repositoryName,
-        Fetching.docsList.branch,
-        Fetching.docsList.docListFileRelativePath
+        Fetching.linksList.branch,
+        Fetching.linksList.linksListFileRelativePath
     );
     try {
-        let listDocs = JSON.parse(ret);
+        let listLinks = JSON.parse(ret);
         if (callback) {
-            for (let i = 0; i < listDocs.length; ++i) {
-                callback(listDocs[i]);
+            for (let i = 0; i < listLinks.length; ++i) {
+                callback(listLinks[i]);
             }
         }
-        return listDocs;
+        return listLinks;
     } catch (err) {
         return [];
     }
 };
 
-export const fetchDocsByTraversing = async (callback) => {
+export const fetchLinksByTraversing = async (callback) => {
     let ret = await getGitHubPathFilesRecurselyOrNot(
         Fetching.common.githubRootUrl,
         Fetching.common.accountName,
         Fetching.common.repositoryName,
         Fetching.docsList.branch,
-        [Fetching.docsList.traversingFetch.relativePath],
-        Fetching.docsList.traversingFetch.recurseDirs
+        [Fetching.linksList.traversingFetch.relativePath],
+        Fetching.linksList.traversingFetch.recurseDirs
     );
     try {
         let validFiles = filterSpecificSuffix(ret, ".md");
@@ -78,11 +73,10 @@ export const fetchDocsByTraversing = async (callback) => {
                 Fetching.common.githubRootUrl,
                 Fetching.common.accountName,
                 Fetching.common.repositoryName,
-                Fetching.docsList.branch,
+                Fetching.linksList.branch,
                 validFiles[i]
             );
-            let elements = parseBlogElements(docContent, false);
-            elements['link'] = `${Navigate.blogs.blogNavigateRoute}?${Navigate.blogs.blogPageParamKey}=${validFiles[i]}`;
+            let elements = parseLinkElements(docContent);
             if (callback) {
                 callback(elements);
             }
@@ -94,24 +88,23 @@ export const fetchDocsByTraversing = async (callback) => {
     }
 };
 
-export const fetchDocsAutoSelect = async (callback) => {
-    if (Fetching.docsList.useDocListFile &&
-        Fetching.docsList.docListFileRelativePath
+export const fetchLinksAutoSelect = async (callback) => {
+    if (Fetching.linksList.useLinksListFile &&
+        Fetching.linksList.linksListFileRelativePath
     ) {
-        return await fetchDocsByListFile(callback);
+        return await fetchLinksByListFile(callback);
     } else {
-        return await fetchDocsByTraversing(callback);
+        return await fetchLinksByTraversing(callback);
     }
 };
 
-export const transformDocList = (docList) => {
-    return docList.map((doc) => {
-        const title = doc.title || BlogsPage.listItem.placeHolder.title;
-        const abstract = doc.abstract || BlogsPage.listItem.placeHolder.abstract;
-        const author = doc.author || BlogsPage.listItem.placeHolder.author;
-        const date = doc.date || BlogsPage.listItem.placeHolder.date;
-        const tags = doc.tags || [];
-        return `${title} ${abstract} ${author} ${date} ${tags.join(' ')}`;
+export const transformLinksList = (linksList) => {
+    return linksList.map((doc) => {
+        const title = doc.title || LinksPage.listItem.placeHolder.title;
+        const descriptions = doc.descriptions || LinksPage.listItem.placeHolder.descriptions;
+        const owner = doc.owner || LinksPage.listItem.placeHolder.owner;
+        const date = doc.date || LinksPage.listItem.placeHolder.date;
+        return `${title} ${descriptions} ${owner} ${date}`;
     })
 }
 
@@ -141,7 +134,7 @@ export const buildInvertedIndex = (docs = []) => {
     return iIndexes;
 };
 
-export const searchDocs = (keywords = '', iIndexes = {}) => {
+export const searchLinks = (keywords = '', iIndexes = {}) => {
     let tokens = tokenizer(keywords);
     let retrieved = {};
     for (const token of tokens) {

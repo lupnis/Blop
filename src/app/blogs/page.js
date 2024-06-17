@@ -9,7 +9,7 @@ import BlogDocRender from "@/components/client/components/BlogDocRender";
 import { BlogsPage } from "@/configs/pages/blogs";
 import { Navigate } from "@/configs/navigate";
 
-import "@/assets/css/blogs.css"
+import "@/assets/css/blogs.css";
 
 export default function BlogPageRender(props) {
     const blogPath = props.searchParams[Navigate.blogs.blogPageParamKey];

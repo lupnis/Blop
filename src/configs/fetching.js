@@ -71,7 +71,7 @@ export const Fetching = {
         maxShownPerPage: 5,
         sortTransform: ((a, b) => 0),
         useLinksListFile: true,
-        linksListFile: 'links/links.json',
+        linksListFileRelativePath: 'links/links.json',
         traversingFetch: {
             relativePath: '',
             recurseDirs: false
@@ -102,6 +102,10 @@ export const Fetching = {
             avatar: {
                 match: (content) => content.startsWith("> avatar:"),
                 transform: (content) => content.split("> avatar:")[1]
+            },
+            descriptions: {
+                match: (content) => content.startsWith("> desc:"),
+                transform: (content) => content.split("> desc:")[1]
             }
         }
     }
