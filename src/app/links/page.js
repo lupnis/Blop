@@ -184,9 +184,8 @@ export default function LinksPageRender(props) {
                             {
                                 (statistics.pages.length > 0) && (statistics.pages[statistics.currentPage - 1].map((content, id) => {
                                     return (
-                                        <Grid item xs="6" sx={{}}>
+                                        <Grid item xs="6" sx={{}} key={id}>
                                             <LinkItem
-                                                key={id}
                                                 title={content.title || LinksPage.listItem.placeHolder.title}
                                                 owner={content.owner || LinksPage.listItem.placeHolder.owner}
                                                 date={content.date || LinksPage.listItem.placeHolder.date}
