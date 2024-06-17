@@ -1,6 +1,5 @@
 "use client";
 
-/** installed modules import  */
 import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -17,7 +16,6 @@ import { useTheme } from "@mui/material/styles";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 
-/** components import */
 import LinkItem from "@/components/client/components/LinkItem";
 import ScrollTop from "@/components/client/components/ScrollTop";
 import {
@@ -27,11 +25,9 @@ import {
     searchLinks
 } from "@/components/client/functions/links";
 
-/** configs import */
 import { LinksPage } from "@/configs/pages/links";
 import { Fetching } from "@/configs/fetching";
 
-/** installed styles import */
 import "@/assets/css/links.css";
 
 export default function LinksPageRender(props) {
