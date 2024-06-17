@@ -5,6 +5,7 @@
 |主页|DONE|
 |博客搜索|DONE|
 |博客查看|DONE|
+|友链搜索|DONE|
 |其他功能|PENDING|
 
 
