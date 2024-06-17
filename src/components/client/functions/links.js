@@ -114,7 +114,7 @@ export const tokenizer = (doc) => {
         if (/[\u4e00-\u9fa5]/.test(sentence)) {
             tokens.push(...sentence.split(''));
         } else {
-            tokens.push(...sentence.replace(/[^a-zA-Z0-9]/g, '').toLowerCase().split(''));
+            tokens.push(...sentence.replace(/[^a-zA-Z0-9]/g, '').toLowerCase().split(' '));
         }
     }
     return tokens;
