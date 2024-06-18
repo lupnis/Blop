@@ -65,5 +65,6 @@ div.banner-content {
     .link-card-item {
       width: 80%;
       max-width: 80%;
+      flex-basis: auto;
     }
   }
