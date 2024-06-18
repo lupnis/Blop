@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 
 import { Navigate } from "@/configs/navigate";
 
-export default function Footer() {
+export default function FlexFooter() {
   const theme = useTheme();
   return (
     <Box
