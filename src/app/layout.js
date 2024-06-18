@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 
 import FlexDrawer from "@/components/client/components/FlexDrawer";
+import Footer from "@/components/client/components/FlexFooter";
 
 import { Theming } from "@/configs/theming";
 
@@ -22,6 +23,11 @@ export default function RootLayout({ children }) {
                         {children}
                     </FlexDrawer>
                 </ThemeProvider>
+                <footer>
+                    <ThemeProvider theme={themeItem}>
+                        <Footer />
+                    </ThemeProvider>
+                </footer>
             </body>
         </html>
     );

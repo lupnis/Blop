@@ -82,7 +82,7 @@ export const fetchDocsByTraversing = async (callback) => {
                 validFiles[i]
             );
             let elements = parseBlogElements(docContent, false);
-            elements['link'] = `${Navigate.blogs.blogNavigateRoute}?${Navigate.blogs.blogPageParamKey}=${validFiles[i]}`;
+            elements["link"] = `${Navigate.blogs.blogNavigateRoute}?${Navigate.blogs.blogPageParamKey}=${validFiles[i]}`;
             if (callback) {
                 callback(elements);
             }
