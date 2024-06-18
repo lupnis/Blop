@@ -40,6 +40,7 @@ export default function CardItem ({ title, author, date, abstract, link, thumbIm
                 </Box>
             </Box>
             <CardMedia
+                className="card-side-img"
                 component="img"
                 sx={{ minWidth: HomePage.listArea.listItem.thumbSize, width: HomePage.listArea.listItem.thumbSize, objectFit: "cover", padding: "8px", borderRadius: "16px" }}
                 image={thumbImage}

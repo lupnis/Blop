@@ -27,3 +27,8 @@ body {
 main {
   overflow-x: hidden;
 }
+@media (max-width: 600px) {
+  .card-side-img {
+    display: none;
+  }
+}
