@@ -42,11 +42,16 @@ export default function FlexFooter() {
               {Navigate.footer.footerToolsText}
             </Typography>
             {
-              Navigate.footer.tools.map((content, index) => {
+              Navigate.footer.tools.map((item, index) => {
                 return (
-                  <IconButton color="inherit" component="a" href={content.href}>
-                    {content.icon}
-                  </IconButton>
+                  <Link
+                    key={index}
+                    href={item.href || Navigate.error.errorNavigateRoute}
+                    color="inherit"
+                    display="block"
+                  >
+                    {item.text}
+                  </Link>
                 );
               })
             }
@@ -56,10 +61,10 @@ export default function FlexFooter() {
               {Navigate.footer.footerSocialText}
             </Typography>
             {
-              Navigate.footer.social.map((content, index) => {
+              Navigate.footer.social.map((item, index) => {
                 return (
-                  <IconButton color="inherit" component="a" href={content.href}>
-                    {content.icon}
+                  <IconButton key={index} color="inherit" component="a" href={item.href}>
+                    {item.icon}
                   </IconButton>
                 );
               })
