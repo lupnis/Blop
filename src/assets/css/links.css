@@ -64,5 +64,6 @@ div.banner-content {
 @media (max-width: 600px) {
     .link-card-item {
       width: 80%;
+      max-width: 80%;
     }
   }
