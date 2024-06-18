@@ -60,3 +60,9 @@ div.banner-content {
     min-height: 100vh;
     max-width: 793px;
 }
+
+@media (max-width: 600px) {
+    .link-card-item {
+      width: 80%;
+    }
+  }
