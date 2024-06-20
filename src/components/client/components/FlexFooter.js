@@ -28,7 +28,7 @@ export default function FlexFooter() {
                 return (
                   <Link
                     key={index}
-                    href={item.href || Navigate.error.errorNavigateRoute}
+                    href={item.route || Navigate.error.errorNavigateRoute}
                     color="inherit"
                     display="block"
                   >
