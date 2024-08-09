@@ -21,7 +21,7 @@ export const Navigate = {
     appBar: {
         displayWebTitle: true,
         titlePrefix: '',
-        titleSuffix: " - BLOP",
+        titleSuffix: " - 江修的博客",
         pendingTitle: "加载中...",
         enableSearchBox: false,
         searchBox: {
@@ -56,10 +56,10 @@ export const Navigate = {
         ],
         footerSocialText: "社交账号",
         social: [
-            { icon: <TelegramIcon />, href: '' },
-            { icon: <XIcon />, href: '' },
-            { icon: <GitHubIcon />, href: '' },
-            { icon: <EmailIcon />, href: '' }
+            { icon: <TelegramIcon />, href: 'https://t.me/lupnis' },
+            { icon: <XIcon />, href: 'https://twitter.com/Lupnish' },
+            { icon: <GitHubIcon />, href: 'https://github.com/lupnis' },
+            { icon: <EmailIcon />, href: 'mailto:lupnisj@gmail.com' }
         ],
         footerToolsText: "小工具",
         tools: [
