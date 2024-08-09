@@ -180,11 +180,11 @@ export default function LinksPageRender(props) {
                                 {LinksPage.noResultsPlaceHolder}
                             </h1>
                         }
-                        <Grid container xs="12" className="flex justify-center" sx={{ padding: "1rem 1rem 1rem 0" }}>
+                        <Grid container xs="12" className="flex justify-center">
                             {
                                 (statistics.pages.length > 0) && (statistics.pages[statistics.currentPage - 1].map((content, id) => {
                                     return (
-                                        <Grid item xs="6" className="link-card-item" key={id}>
+                                        <Grid item xs="5.9" className="link-card-item" key={id}>
                                             <LinkItem
                                                 title={content.title || LinksPage.listItem.placeHolder.title}
                                                 owner={content.owner || LinksPage.listItem.placeHolder.owner}

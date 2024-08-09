@@ -49,7 +49,7 @@ div.banner-content {
     left:0;
     width: 100%;
     height: 100%;
-    -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0, .2) 50%,#000 70%, #000 100%);      
+    -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0, .2) 30%,#000 60%, #000 100%);      
     -webkit-mask-size: 100% 100%;
     object-fit: cover;
     z-index: -1;
@@ -61,10 +61,15 @@ div.banner-content {
     max-width: 793px;
 }
 
+.link-card-item {
+    margin: 3px;
+}
+
 @media (max-width: 600px) {
     .link-card-item {
       width: 80%;
       max-width: 80%;
       flex-basis: auto;
+      margin: 3px;
     }
   }
