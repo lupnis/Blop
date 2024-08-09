@@ -11,11 +11,8 @@ export const HomePage = {
         content: (
             <div style={{ textAlign: "center" }}>
                 <h1 style={{ color: "#fff", fontSize: "32pt" }}>
-                    Hello World!
+                    欢迎欢迎访问我的博客u3u
                 </h1>
-                <h2 style={{ color: "#fff" }}>
-                    u3333333333333333333u
-                </h2>
             </div>
         ),
         showExpander: true,
