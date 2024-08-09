@@ -18,7 +18,7 @@ export default function FlexFooter() {
       }}
     >
       <Container maxWidth={false}>
-        <Grid container spacing={2} justifyContent="space-between">
+        <Grid container spacing={2} justifyContent="space-evenly">
           <Grid item xs={6} sm={3} md={2}>
             <Typography variant="h6" gutterBottom>
               {Navigate.footer.footerNavigateText}
